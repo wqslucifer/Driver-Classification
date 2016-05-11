@@ -11,6 +11,7 @@ import glob
 import math
 import time
 import random
+import pickle
 import numpy as np
 import pandas as pd
 
@@ -40,7 +41,7 @@ def load_train_cv(encoder):
     print('Read train images')
     for j in range(10):
         print('Load folder c{}'.format(j))
-        path = os.path.join('..', 'input', 'train', 'c' + str(j), '*.jpg')
+        path = os.path.join('..', 'train', 'c' + str(j), '*.jpg')
         files = glob.glob(path)
         for fl in files:
             img = cv2.imread(fl, 0)
@@ -65,7 +66,7 @@ def load_train_cv(encoder):
 
 def load_test():
     print('Read test images')
-    path = os.path.join('..', 'input', 'test', '*.jpg')
+    path = os.path.join('..', 'test', '*.jpg')
     files = glob.glob(path)
     X_test = []
     X_test_id = []
@@ -96,7 +97,7 @@ def get_im_cv2(path, img_rows, img_cols, color_type=1):
     elif color_type == 3:
         img = cv2.imread(path)
     # Reduce size
-    resized = cv2.resize(img, (img_rows, img_cols))
+    resized = cv2.resize(img, (img_cols, img_rows))
     return resized
 
 
@@ -122,11 +123,18 @@ def show_image(im, name='image'):
     cv2.destroyAllWindows()
 
 
+def cache_data(data, path):
+    if os.path.isdir(os.path.dirname(path)):
+        file = open(path, 'wb')
+        pickle.dump(data, file)
+        file.close()
+    else:
+        print('Directory doesnt exists')
 
 
-
-
-
-
-
-
+def restore_data(path):
+    data = dict()
+    if os.path.isfile(path):
+        file = open(path, 'rb')
+        data = pickle.load(file)
+    return data
