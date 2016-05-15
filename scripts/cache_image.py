@@ -15,18 +15,15 @@ import pandas as pd
 from tqdm import tqdm
 
 ''' cache image: save by driver id '''
+img_cols = 4 * 16 * 2
+img_rows = 3 * 16 * 2
 
-img_cols = 36
-img_rows = 24
 PIXELS = 24
 imageSize = PIXELS * PIXELS
 num_features = imageSize
 main_path1 = 'F:\\kaggle\\Driver Classification'
 main_path2 = 'F:\\kaggle\\State Farm Distracted Driver Detection\\'
 driver_id_path = os.path.join(main_path1, 'source_data', 'driver_imgs_list.csv')
-
-
-# p002_$number$_$DATE$.npy
 
 
 def get_current_date():

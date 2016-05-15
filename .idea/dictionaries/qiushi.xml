@@ -2,7 +2,10 @@
   <dictionary name="qiushi">
     <words>
       <w>classname</w>
+      <w>conv</w>
       <w>imgs</w>
+      <w>imread</w>
+      <w>lasagne</w>
       <w>resized</w>
     </words>
   </dictionary>

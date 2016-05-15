@@ -59,5 +59,5 @@ def k_fold_cv(X, y, test_size=0.2, random_state=42):
     n_folds = int(1 / float(test_size))
     kf = KFold(len(X), n_folds=n_folds, random_state=random_state)
     for train_idx, test_idx in kf:
-
+        pass
 # np.concatenate((a,b), axis=0)
